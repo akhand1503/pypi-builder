@@ -2,7 +2,9 @@ os: linux
 arch:
   - amd64
   - arm64
+  - arm64-graviton2
 dist: bionic
+virt: lxd
 language: python
 cache: pip
 group: travis_latest
@@ -16,6 +18,7 @@ env:
 install:
   - sudo apt update -q
   - sudo apt install -qy python3-wheel
+  - uname -a
   # fix strange permission issues on travis ci arm64 nodes
   - sudo chown travis:travis -R /home/travis/.cache/pip/wheels || true
   - pip3 install j2cli twine
